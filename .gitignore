@@ -13,6 +13,7 @@ models/
 
 # Output logs or temporary files
 resnet50_training_output.txt
+effnetb0_training_output.txt
 
 # VS Code settings (opzionale)
 .vscode/

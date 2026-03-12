@@ -44,8 +44,7 @@ def main():
         include_top=False,
         weights="imagenet",
         input_shape=(32,32,3),
-        pooling="max",
-        name="effnetb0",
+        pooling="max"
     )
 
     pretrained_model.trainable = False # disable EfficientNetB0 parameter optimization
