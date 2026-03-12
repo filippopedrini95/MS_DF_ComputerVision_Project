@@ -6,12 +6,16 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "colorama>=0.4.6",
+    "fastapi>=0.135.1",
     "keras>=3.13.2",
     "numpy>=2.4.3",
+    "opencv-python-headless>=4.13.0.92",
     "pandas>=3.0.1",
     "pathlib>=1.0.1",
+    "pydantic>=2.12.5",
     "scikit-learn>=1.8.0",
     "tensorflow>=2.21.0",
+    "uvicorn>=0.41.0",
 ]
 
 [dependency-groups]
