@@ -1,0 +1,25 @@
+# Virtual environments
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Model files
+models/
+
+# Output logs or temporary files
+output.txt
+
+# VS Code settings (opzionale)
+.vscode/
+
+# Python environment/version files
+.python-version
+
+# Docker temporary or override files
+docker-compose.override.yml
+*.dockerfile
