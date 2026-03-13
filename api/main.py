@@ -1,34 +1,22 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
+import numpy as np
+import cv2
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "test"}
+@app.post("/predict")
+async def predict(file: UploadFile = File(...)):
 
-@app.get("/items")
-def get_items():
-    return ["prova"]
+    # leggi i byte dell'immagine
+    contents = await file.read()
 
-@app.get("/items1")
-def get_items(limit = 2):
-    items = ["apple", "banana", "orange"]
-    return items[:int(limit)]
+    # converti in array numpy
+    np_arr = np.frombuffer(contents, np.uint8)
 
-@app.get("/items/{item_id}")
-def get_item(item_id: int):
-    items = ["apple", "banana", "orange"]
-    if 0 <= item_id < len(items):
-        return {"item": items[item_id]}
-    return {"error": "Item not found"}
+    # decodifica immagine con OpenCV
+    img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
-
-from pydantic import BaseModel
-
-class Item(BaseModel):
-    name: str
-    price: float
-
-@app.post("/filippo")
-def create_item(item: Item):
-    return {"message": f"Item {item.name} with price {item.price} added!"}
+    return {
+        "filename": file.filename,
+        "shape": img.shape
+    }

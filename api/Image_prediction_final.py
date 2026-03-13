@@ -9,17 +9,13 @@ import keras
 from keras.applications.resnet50 import preprocess_input as resnet_preprocess
 from tensorflow.keras.applications.efficientnet import preprocess_input as efficientnet_preprocess
 
-
 #load imgclf_resnet50_cifar10_v1
 imgclf_resnet50_model = keras.models.load_model("/workspaces/MS_DF_ComputerVision_Project/models/imgclf_resnet50_cifar10_v1.keras")
 
-
-#STILL TO GET
 #load imgclf_effnetb0_cifar10_v1.keras
-#imgclf_effnetb0_model = keras.models.load_model("imgclf_effnetb0_cifar10_v1.keras")
+imgclf_effnetb0_model = keras.models.load_model("/workspaces/MS_DF_ComputerVision_Project/models/imgclf_effnetb0_cifar10_v1.keras")
 
-
-
+#classes dict
 class_names = {
     0:"airplane", 
     1:"automobile", 
@@ -33,11 +29,10 @@ class_names = {
     9:"truck"
 }
 
-
 # Image Preprocessing
 
 # Upload image
-img = cv2.imread('/workspaces/MS_DF_ComputerVision_Project/images/airplane.jpg')
+img = cv2.imread('/workspaces/MS_DF_ComputerVision_Project/images/cat.jpeg')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 
@@ -85,11 +80,11 @@ class_pred_resnet = np.argmax(class_prob_resnet, axis=1)
 
 
 #prediction with imgclf_effnetb0_model
-#class_prob_effnet = imgclf_effnetb0_model.predict(img_prepr_effnet)
-#class_pred_effnet = np.argmax(class_prob_effnet, axis=1)
+class_prob_effnet = imgclf_effnetb0_model.predict(img_prepr_effnet)
+class_pred_effnet = np.argmax(class_prob_effnet, axis=1)
 
 
 
 print("imgclf_resnet50_cifar10_v1:", class_names[int(class_pred_resnet[0])])
-#print("imgclf_effnetb0_cifar10_v1:", class_names[int(class_pred_effnet[0])])
+print("imgclf_effnetb0_cifar10_v1:", class_names[int(class_pred_effnet[0])])
 
