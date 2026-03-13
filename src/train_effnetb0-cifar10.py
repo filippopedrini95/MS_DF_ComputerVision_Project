@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-#Libraries
 from pathlib import Path
 import time
 import pandas as pd
@@ -9,13 +5,13 @@ import numpy as np
 import keras
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.applications.efficientnet import preprocess_input as efficientnet_preprocess
+from keras.applications.efficientnet import preprocess_input as efficientnet_preprocess
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import Adam
 from keras.callbacks import EarlyStopping
-from tensorflow.keras.applications import EfficientNetB0
-from tensorflow.keras.datasets import cifar10
+from keras.applications import EfficientNetB0
+from keras.datasets import cifar10
 from sklearn.metrics import classification_report
 from colorama import Fore, Style
 

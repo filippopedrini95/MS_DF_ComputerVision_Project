@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 from pathlib import Path
 import numpy as np
 import tensorflow as tf
@@ -24,6 +21,7 @@ class_names = {
 #models directory path
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODELS_DIR = BASE_DIR / "models"
+
 
 def predict(img_prepr):
     if type(img_prepr) != np.ndarray:

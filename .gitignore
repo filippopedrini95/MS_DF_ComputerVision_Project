@@ -8,6 +8,12 @@ __pycache__/
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
+# Exclude images
+*.jpg
+*.jpeg
+*.webp
+*.avif
+
 
 # Output logs or temporary files
 resnet50_training_output.txt

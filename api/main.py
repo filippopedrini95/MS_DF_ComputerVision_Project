@@ -3,11 +3,10 @@ import numpy as np
 import cv2
 
 from preprocess import image_preprocess
-import imgclf_resnet50_cifar10_v1_model 
-import imgclf_effnetb0_cifar10_v1_model
+import resnet50_cifar10_v1 
+import effnetb0_cifar10_v1
 
 app = FastAPI()
-
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
@@ -26,8 +25,8 @@ async def predict(file: UploadFile = File(...)):
     img = image_preprocess(img)
 
     #do predictions with both models
-    resnet_pred_class, resnet_prob = imgclf_resnet50_cifar10_v1_model.predict(img)
-    effnet_pred_class, effnet_prob = imgclf_effnetb0_cifar10_v1_model.predict(img)
+    resnet_pred_class, resnet_prob = resnet50_cifar10_v1.predict(img)
+    effnet_pred_class, effnet_prob = effnetb0_cifar10_v1.predict(img)
     
     #return prediction results
     return {

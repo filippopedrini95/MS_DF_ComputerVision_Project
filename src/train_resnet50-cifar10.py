@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-#Libraries
 from pathlib import Path
 import time
 import pandas as pd
@@ -14,8 +10,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import Adam
 from keras.callbacks import EarlyStopping
-from tensorflow.keras.applications import ResNet50
-from tensorflow.keras.datasets import cifar10
+from keras.applications import ResNet50
+from keras.datasets import cifar10
 from sklearn.metrics import classification_report
 from colorama import Fore, Style
 
