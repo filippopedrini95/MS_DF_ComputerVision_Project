@@ -9,6 +9,7 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Exclude images
+images/
 *.jpg
 *.jpeg
 *.webp
@@ -28,3 +29,6 @@ effnetb0_training_output.txt
 # Docker temporary or override files
 docker-compose.override.yml
 *.dockerfile
+
+# macOS
+.DS_Store
