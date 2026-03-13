@@ -2,9 +2,9 @@ from fastapi import FastAPI, UploadFile, File
 import numpy as np
 import cv2
 
-from preprocess import image_preprocess
-import resnet50_cifar10_v1 
-import effnetb0_cifar10_v1
+from .preprocess import image_preprocess
+from . import resnet50_cifar10_v1
+from . import effnetb0_cifar10_v1
 
 app = FastAPI()
 

@@ -41,7 +41,7 @@ def main():
         weights="imagenet",
         input_shape=(32,32,3),
         pooling="max",
-        name="resnet50",
+        name="resnet50"
     )
 
     pretrained_model.trainable = False # disable ResNet50 parameter optimization

@@ -9,11 +9,14 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Exclude images
-images/
 *.jpg
 *.jpeg
 *.webp
 *.avif
+
+# but keep a couple of them
+!images/cat.jpeg
+!images/airplane.jpg
 
 
 # Output logs or temporary files
