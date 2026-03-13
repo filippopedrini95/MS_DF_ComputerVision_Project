@@ -2,21 +2,41 @@ from fastapi import FastAPI, UploadFile, File
 import numpy as np
 import cv2
 
+from preprocess import image_preprocess
+import imgclf_resnet50_cifar10_v1_model 
+import imgclf_effnetb0_cifar10_v1_model
+
 app = FastAPI()
+
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
 
-    # leggi i byte dell'immagine
+    #read image bites
     contents = await file.read()
 
-    # converti in array numpy
+    #transform into numpy array
     np_arr = np.frombuffer(contents, np.uint8)
 
-    # decodifica immagine con OpenCV
+    #decode np_arr to image using cv2 functions
     img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
+    #preprocess the image to fit cifar10 images size
+    img = image_preprocess(img)
+
+    #do predictions with both models
+    resnet_pred_class, resnet_prob = imgclf_resnet50_cifar10_v1_model.predict(img)
+    effnet_pred_class, effnet_prob = imgclf_effnetb0_cifar10_v1_model.predict(img)
+    
+    #return prediction results
     return {
-        "filename": file.filename,
-        "shape": img.shape
+        "imgclf_resnet50_cifar10_v1": {
+            "predicted_class": resnet_pred_class,
+            "confidence": float(resnet_prob)
+        },
+        "imgclf_effnetb0_cifar10_v1": {
+            "predicted_class": effnet_pred_class,
+            "confidence": float(effnet_prob)
+        }
     }

@@ -30,5 +30,6 @@ def image_preprocess(img):
   else:
     left, right, top, bottom = padd_tuple
 
+  final_img = cv2.copyMakeBorder(img_resized, top, bottom, left, right, cv2.BORDER_CONSTANT, value=0)
 
-  return cv2.copyMakeBorder(img_resized, top, bottom, left, right, cv2.BORDER_CONSTANT, value=0)
+  return final_img
